@@ -15,7 +15,9 @@ var customWriter *syslog.Writer
 //}
 
 func ProcessReport(ctx *context.Context) {
-	msg := fmt.Sprintf("method = %s path = %s IP = %s refer = %s agent = %s query = %s", ctx.Method, ctx.Uri, ctx.IP, ctx.Refer, ctx.UserAgent, ctx.Query)
+	msg := fmt.Sprintf("method = %s path = %s IP = %s refer = %s agent = %s",
+			ctx.Input.Method(), ctx.Input.URI(), ctx.Input.IP(), ctx.Input.Refer(), ctx.Input.UserAgent(),
+		)
 	customWriter.Write([]byte(msg))
 }
 
